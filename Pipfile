@@ -10,6 +10,10 @@ name = "pypi"
 flask = "*"
 flask-sockets = "*"
 gevent = "*"
+flask-bootstrap = "*"
+flask-nav = "*"
+flask-wtf = "*"
+flask-appconfig = "*"
 
 
 [dev-packages]
