@@ -89,6 +89,11 @@ def get_milestone(cond):
     conn.row_factory = dict_factory
     c = conn.cursor()
     obj = c.execute(select('milestone', cond, order_by=('mindex desc',))).fetchall()
+    for index, m in enumerate(obj):
+        try:
+            m['prev'] = obj[index + 1]['hash']
+        except IndexError:
+            m['prev'] = get_milestone_by_index(m['mindex'] - 1)['hash']
     conn.close()
     return obj
     
