@@ -5,7 +5,7 @@ try:
 except:
     r = None
 
-SQLITE_DB = 'milestone.db'
+SQLITE_DB = '/home/louie/dev/iota/iota-milestone-monitor/milestone.db'
 
 
 def init_table(conn):
@@ -99,5 +99,5 @@ def get_milestone(cond):
     
 
 if __name__ == '__main__':
-    conn = connect('../milestone.db')
+    conn = connect(SQLITE_DB)
     update_db(conn)

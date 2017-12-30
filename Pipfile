@@ -17,6 +17,7 @@ flask-appconfig = "*"
 iotapy = "*"
 mosql = "*"
 babel = "*"
+gunicorn = "*"
 
 
 [dev-packages]
