@@ -80,7 +80,7 @@
 	    <tbody>
 	      {% for k, v in nodeinfo.items() %}
 	      <tr>
-		<td class="col-md-2">{{ k }}</td>
+		<td class="col-md-1" style="font-size:10px">{{ k }}</td>
 		<td class="col-md-4 {{'hash' if k in ['latestMilestone', 'latestSolidSubtangleMilestone']}}">{{ v }}</td>
 	      </tr>
 	      {% endfor %}
