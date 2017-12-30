@@ -14,6 +14,9 @@ flask-bootstrap = "*"
 flask-nav = "*"
 flask-wtf = "*"
 flask-appconfig = "*"
+iotapy = "*"
+mosql = "*"
+babel = "*"
 
 
 [dev-packages]

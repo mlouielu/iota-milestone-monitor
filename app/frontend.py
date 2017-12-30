@@ -12,8 +12,7 @@ from markupsafe import escape
 
 from .forms import SignupForm
 from .nav import nav
-
-from db import r
+from .milestone import connect, get_latest_index, get_milestone
 
 
 frontend = Blueprint('frontend', __name__)
@@ -44,8 +43,8 @@ nav.register_element('frontend_top', Navbar(
 # "templates/index.html" documentation for more details.
 @frontend.route('/')
 def index():
-    index, m = r.latest('milestone')
-    milestones = [r.get(index, 'milestone') for i in range(index, index - 5, -1)]
+    mindex = get_latest_index()
+    milestones = get_milestone({'mindex >': mindex - 5})
     return render_template('index.html', milestones=milestones)
 
 

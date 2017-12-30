@@ -11,6 +11,7 @@
 #
 # Afterwards, point your browser to http://localhost:5000, then check out the
 # source.
+import babel
 
 from flask import Flask
 from flask_appconfig import AppConfig
@@ -18,6 +19,14 @@ from flask_bootstrap import Bootstrap
 
 from .frontend import frontend
 from .nav import nav
+
+
+def format_datetime(value, format='medium'):
+    if format == 'full':
+        format="EEEE, d. MMMM y 'at' HH:mm"
+    elif format == 'medium':
+        format="EE dd.MM.y HH:mm"
+    return babel.dates.format_datetime(value, format)
 
 
 def create_app(configfile=None):
@@ -44,6 +53,8 @@ def create_app(configfile=None):
 
     # We initialize the navigation as well
     nav.init_app(app)
+
+    app.jinja_env.filters['datetime'] = format_datetime
 
     return app
 
