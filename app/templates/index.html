@@ -42,17 +42,37 @@
         <tbody>
           {% for m in milestones %}
           <tr>
-            <th scope="row">{{ m.mindex }}</th>
-            <td class="hash">{{ m.hash }}</td>
-            <td>{{ m.timestamp | datetime }}</td>
-            <td class="hash">{{ m.trunk }}</td>
-            <td class="hash">{{ m.branch }}</td>
-            <td class="hash">{{ m.trunkt }}</td>
-            <td class="hash">{{ m.trunkb }}</td>
+            <th scope="row" class="col-md-1">{{ m.mindex }}</th>
+            <td class="col-md-2 hash">{{ m.hash }}</td>
+            <td class="col-md-1">{{ m.timestamp | datetime }}</td>
+            <td class="col-md-2 hash">{{ m.trunk }}</td>
+            <td class="col-md-1 hash">{{ m.branch }}</td>
+            <td class="col-md-1 hash">{{ m.trunkt }}</td>
+            <td class="col-md-2 hash">{{ m.trunkb }}</td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
+    </div>
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          Explain:
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <h2>Node Info</h2>
+	  <table class="table">
+	    <tbody>
+	      {% for k, v in nodeinfo.items() %}
+	      <tr>
+		<td class="col-md-2">{{ k }}</td>
+		<td class="col-md-4 {{'hash' if k in ['latestMilestone', 'latestSolidSubtangleMilestone']}}">{{ v }}</td>
+	      </tr>
+	      {% endfor %}
+	    </tbody>
+	  </table>
+        </div>
+      </div>
     </div>
   </div>
 
