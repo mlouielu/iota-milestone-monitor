@@ -15,6 +15,8 @@ from .nav import nav
 from .milestone import connect, get_latest_index, get_milestone
 from .node import get_node_info
 
+MILESTONE_PAGE_ITEM = 50
+
 
 frontend = Blueprint('frontend', __name__)
 
@@ -50,7 +52,7 @@ def index():
 
 
 def get_maxp(mindex):
-    return (mindex - 243000) // 50 + 1
+    return (mindex - 243000) // MILESTONE_PAGE_ITEM + 1
 
 def get_page(page, mindex):
     max_page = get_maxp(mindex) + 1
@@ -71,7 +73,8 @@ def milestones():
         return "milestone page error"
     
     milestones = get_milestone(
-        {'mindex >': mindex - 50 * page, 'mindex <=': mindex - (50 * (page - 1))})
+        {'mindex >': mindex - MILESTONE_PAGE_ITEM * page,
+         'mindex <=': mindex - (MILESTONE_PAGE_ITEM * (page - 1))})
     start, end = get_page(page, mindex)
     return render_template('milestones.html', milestones=milestones,
                            page=page, start=start, end=end, maxp=maxp)
