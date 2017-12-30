@@ -72,9 +72,9 @@ def milestones():
 
 @frontend.route('/stats')
 def stats():
-    return 'Under construct'
+    return render_template('stats.html')
 
 
 @frontend.route('/about')
 def about():
-    return 'Louie Lu'
+    return render_template('about.html')
