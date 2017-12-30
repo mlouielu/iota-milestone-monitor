@@ -29,6 +29,10 @@ def format_datetime(value, format='medium'):
     return babel.dates.format_datetime(value, format)
 
 
+def iota_explorer(value):
+    return f'https://thetangle.org/transaction/{value}'
+
+
 def create_app(configfile=None):
     # We are using the "Application Factory"-pattern here, which is described
     # in detail inside the Flask docs:
@@ -55,10 +59,10 @@ def create_app(configfile=None):
     nav.init_app(app)
 
     app.jinja_env.filters['datetime'] = format_datetime
+    app.jinja_env.filters['iota_explorer'] = iota_explorer
 
     return app
 
 if __name__ == '__main__':
     app = create_app()
     app.run()
-
