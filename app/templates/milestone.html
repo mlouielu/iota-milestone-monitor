@@ -1,0 +1,38 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" width="5%">#</th>
+      <th scope="col">Milestone Hash</th>
+      <th scope="col">Time</th>
+      <th scope="col">Trunk</th>
+      <th scope="col">Branch</th>
+      <th scope="col">TrunkT</th>
+      <th scope="col">TrunkB</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for m in milestones %}
+    <tr>
+      <th scope="row" style="max-width: 20px">{{ m.mindex }}</th>
+      <td class="col-md-2 hash"><a href="{{ m.hash | iota_explorer }}">{{ m.hash }}</a></td>
+      <td class="col-md-1">{{ m.timestamp | datetime }}</td>
+      <td class="col-md-1 hash"><a href="{{ m.trunk | iota_explorer }}">{{ m.trunk }}</a></td>
+      <td class="col-md-1 hash" {{'style=background-color:rgba(231,76,60,0.4)' if m.branch != m.prev}}>
+	{% if m.branch != m.prev %}
+	<a href="{{ m.branch | iota_explorer }}">{{ m.branch }}</a>
+	{% else %}
+	{{ m.branch }}
+	{% endif %}
+      </td>
+      <td class="col-md-1 hash" {{'style=background-color:rgba(231,76,60,0.4)' if m.trunkt != m.prev}}>
+	{% if m.trunkt != m.prev %}
+	<a href="{{ m.trunkt | iota_explorer }}">{{ m.trunkt }}</a>
+	{% else %}
+	{{ m.trunkt }}
+	{% endif %}
+      </td>
+      <td class="col-md-2 hash"><a href="{{ m.trunkb | iota_explorer }}">{{ m.trunkb }}</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

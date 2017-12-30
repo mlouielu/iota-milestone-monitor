@@ -27,32 +27,7 @@
       <h2>Latest Milestones</h2>
     </div>
     <div class="col-sm-12">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col" width="5%">#</th>
-            <th scope="col">Milestone Hash</th>
-            <th scope="col">Time</th>
-            <th scope="col">Trunk</th>
-            <th scope="col">Branch</th>
-            <th scope="col">TrunkT</th>
-            <th scope="col">TrunkB</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for m in milestones %}
-          <tr>
-            <th scope="row" style="max-width: 20px">{{ m.mindex }}</th>
-            <td class="col-md-2 hash">{{ m.hash }}</td>
-            <td class="col-md-1">{{ m.timestamp | datetime }}</td>
-            <td class="col-md-1 hash">{{ m.trunk }}</td>
-            <td class="col-md-1 hash" {{'style=background-color:rgba(231,76,60,0.4)' if m.branch != m.prev}}>{{ m.branch }}</td>
-            <td class="col-md-1 hash" {{'style=background-color:rgba(231,76,60,0.4)' if m.trunkt != m.prev}}>{{ m.trunkt }}</td>
-            <td class="col-md-2 hash">{{ m.trunkb }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+      {%- include "milestone.html" %}
     </div>
     <div class="col-sm-12">
       <div class="row">
