@@ -32,14 +32,23 @@
           <tr>
             <th scope="col">#</th>
             <th scope="col">Milestone Hash</th>
-            <th scope="col">Point to</th>
+            <th scope="col">Time</th>
+            <th scope="col">Trunk</th>
+            <th scope="col">Branch</th>
+            <th scope="col">TrunkT</th>
+            <th scope="col">TrunkB</th>
           </tr>
         </thead>
         <tbody>
           {% for m in milestones %}
           <tr>
-            <th scope="row">{{ m[0] }}</th>
-            <td>{{ m[1] }}</td>
+            <th scope="row">{{ m.mindex }}</th>
+            <td class="hash">{{ m.hash }}</td>
+            <td>{{ m.timestamp | datetime }}</td>
+            <td class="hash">{{ m.trunk }}</td>
+            <td class="hash">{{ m.branch }}</td>
+            <td class="hash">{{ m.trunkt }}</td>
+            <td class="hash">{{ m.trunkb }}</td>
           </tr>
           {% endfor %}
         </tbody>
