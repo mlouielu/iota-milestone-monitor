@@ -26,19 +26,9 @@ frontend = Blueprint('frontend', __name__)
 nav.register_element('frontend_top', Navbar(
     View('IOTA-Milestone Monitor', '.index'),
     View('Home', '.index'),
-    Subgroup(
-        'Docs',
-        Link('Flask-Bootstrap', 'http://pythonhosted.org/Flask-Bootstrap'),
-        Link('Flask-AppConfig', 'https://github.com/mbr/flask-appconfig'),
-        Link('Flask-Debug', 'https://github.com/mbr/flask-debug'),
-        Separator(),
-        Text('Bootstrap'),
-        Link('Getting started', 'http://getbootstrap.com/getting-started/'),
-        Link('CSS', 'http://getbootstrap.com/css/'),
-        Link('Components', 'http://getbootstrap.com/components/'),
-        Link('Javascript', 'http://getbootstrap.com/javascript/'),
-        Link('Customize', 'http://getbootstrap.com/customize/'), ),
-    ))
+    View('Milestones', '.milestones'),
+    View('Stats', '.stats'),
+    View('About', '.about')))
 
 
 # Our index-page just shows a quick explanation. Check out the template
@@ -78,3 +68,13 @@ def milestones():
     start, end = get_page(page, mindex)
     return render_template('milestones.html', milestones=milestones,
                            page=page, start=start, end=end, maxp=maxp)
+
+
+@frontend.route('/stats')
+def stats():
+    return 'Under construct'
+
+
+@frontend.route('/about')
+def about():
+    return 'Louie Lu'
