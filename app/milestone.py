@@ -1,3 +1,4 @@
+import datetime
 import sqlite3
 from mosql.query import insert, select
 try:
@@ -96,7 +97,36 @@ def get_milestone(cond):
             m['prev'] = get_milestone_by_index(m['mindex'] - 1)['hash']
     conn.close()
     return obj
-    
+
+
+def get_milestones_hr(days):
+    conn = connect()
+    conn.row_factory = dict_factory
+    c = conn.cursor()
+    now = datetime.datetime.now() - datetime.timedelta(days)
+    miles = c.execute(select('milestone', {'timestamp >=': now.timestamp()})).fetchall()
+
+    def get_hr(milestones, start):
+        count = 0
+        end = start + 3600
+        for m in milestones:
+            if m['timestamp'] >= start and m['timestamp'] <= end:
+                count += 1
+            if m['timestamp'] > end:
+                break
+        return count
+
+    data = []
+    stop = datetime.datetime.now().timestamp()
+    import time
+    t = time.time()
+    while now.timestamp() + 3600 < stop:
+        data.append(
+            (f'Date({int(now.timestamp() * 1000) + 3600})', get_hr(miles, now.timestamp())))
+        now += datetime.timedelta(hours=1)
+    print('process', time.time() - t)
+    return data
+
 
 if __name__ == '__main__':
     conn = connect(SQLITE_DB)

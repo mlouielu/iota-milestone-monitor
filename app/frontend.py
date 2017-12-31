@@ -5,20 +5,24 @@
 # You can find out more about blueprints at
 # http://flask.pocoo.org/docs/blueprints/
 
-from flask import Blueprint, render_template, flash, redirect, url_for, request
+import datetime
+
+from flask import Blueprint, render_template, flash, redirect, url_for, request, current_app
 from flask_bootstrap import __version__ as FLASK_BOOTSTRAP_VERSION
 from flask_nav.elements import Navbar, View, Subgroup, Link, Text, Separator
+from flask_googlecharts import GoogleCharts, LineChart, AnnotationChart
 from markupsafe import escape
 
 from .forms import SignupForm
 from .nav import nav
-from .milestone import connect, get_latest_index, get_milestone
+from .milestone import connect, get_latest_index, get_milestone, get_milestones_hr
 from .node import get_node_info
 
 MILESTONE_PAGE_ITEM = 50
 
 
 frontend = Blueprint('frontend', __name__)
+charts = GoogleCharts()
 
 # We're adding a navbar as well through flask-navbar. In our example, the
 # navbar has an usual amount of Link-Elements, more commonly you will have a
@@ -72,6 +76,14 @@ def milestones():
 
 @frontend.route('/stats')
 def stats():
+    # Get all milestone hours from 243001
+    d = datetime.datetime.now() - datetime.datetime.fromtimestamp(1508788869)
+    days_all = get_milestones_hr(d.days + 1)
+    chart = AnnotationChart("milestones_hr", options={"title": "test", "width": "80%", "height": "50%"})
+    chart.add_column("datetime", "Days")
+    chart.add_column("number", "Milestones")
+    chart.add_rows(days_all)
+    charts.register(chart)
     return render_template('stats.html')
 
 

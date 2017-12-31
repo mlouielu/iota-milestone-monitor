@@ -18,6 +18,7 @@ iotapy = "*"
 mosql = "*"
 babel = "*"
 gunicorn = "*"
+flask-googlecharts = "*"
 
 
 [dev-packages]

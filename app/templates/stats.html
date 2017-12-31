@@ -1,6 +1,12 @@
 {%- extends "base.html" %}
 {% import "bootstrap/utils.html" as utils %}
 
+{% block scripts %}
+{{ super() }}
+<script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+{{ charts_init }}
+{% endblock %}
+
 {% block content %}
   <div class="container">
   {%- with messages = get_flashed_messages(with_categories=True) %}
@@ -14,7 +20,8 @@
   {%- endwith %}
   <div class="row">
     <div class="col-sm-12">
-      Still under construct...
+      <h2>Milestone per hours from 243001</h2>
+      {{ charts.milestones_hr }}
     </div>
   </div>
   {% endblock %}  

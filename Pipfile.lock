@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "585efaa98b050decabd2ca30578e41d43e95084498b95b2cd118bdc24744b93a"
+            "sha256": "983075e2ff4e8a260c1737f8b93034eefa994d37f0aca70cecc3558fc4aa95a1"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -94,10 +94,10 @@
         },
         "class-registry": {
             "hashes": [
-                "sha256:12d28642d89bc4f823369b36ad337988e9a423230e8bb3b6e43e50c5f5c0a031",
-                "sha256:97a116a6e448e183d14d6fe82b5797b824dff9d10fdf3adf16936286f737597a"
+                "sha256:cfb855514753e2edfe8d88b14a6e449820682fe0983efe61b83df28b688b3e5a",
+                "sha256:678bdb0322566c07a4d8905140d364bd34a73baf46bf7580fc2e06fa994d4e7e"
             ],
-            "version": "==2.1.0"
+            "version": "==2.1.2"
         },
         "click": {
             "hashes": [
@@ -165,6 +165,12 @@
                 "sha256:cb08ed940183f6343a64e465e83b3a3f13c53e1baabb8d72b5da4545ef123ac8"
             ],
             "version": "==3.3.7.1"
+        },
+        "flask-googlecharts": {
+            "hashes": [
+                "sha256:04bf060acbaf757cf0d1e52728b09d5b1b440fa71f2484968ca06e47bd4d114d"
+            ],
+            "version": "==0.0.3"
         },
         "flask-nav": {
             "hashes": [

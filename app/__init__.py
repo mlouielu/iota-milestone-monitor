@@ -17,7 +17,7 @@ from flask import Flask
 from flask_appconfig import AppConfig
 from flask_bootstrap import Bootstrap
 
-from .frontend import frontend
+from .frontend import frontend, charts
 from .nav import nav
 
 
@@ -45,6 +45,9 @@ def create_app(configfile=None):
 
     # Install our Bootstrap extension
     Bootstrap(app)
+
+    # Google Charts
+    charts.init_app(app)
 
     # Our application uses blueprints as well; these go well with the
     # application factory. We already imported the blueprint, now we just need

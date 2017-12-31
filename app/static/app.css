@@ -6,6 +6,10 @@
     font-family: Inconsolata, monospace;
 }
 
+.time {
+    font-size: 14px;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -30,9 +34,11 @@ body {
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
+/*
 body > .container {
-  padding: 120px 15px 0;
-}
+  padding: 60px 15px 0;
+} */
+
 .container .text-muted {
     margin: 20px 0;
 }
