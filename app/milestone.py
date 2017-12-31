@@ -1,12 +1,15 @@
 import datetime
 import sqlite3
 from mosql.query import insert, select
+from werkzeug.contrib.cache import SimpleCache
+
 try:
     from db import r
 except:
     r = None
 
 SQLITE_DB = '/home/louie/dev/iota/iota-milestone-monitor/milestone.db'
+hr_cache = SimpleCache()
 
 
 def init_table(conn):
@@ -99,7 +102,7 @@ def get_milestone(cond):
     return obj
 
 
-def get_milestones_hr(days):
+def get_milestones_hr(days, cache=True):
     conn = connect()
     conn.row_factory = dict_factory
     c = conn.cursor()
@@ -116,15 +119,21 @@ def get_milestones_hr(days):
                 break
         return count
 
+    if cache:
+        d = hr_cache.get(days)
+        if d:
+            return d
+
     data = []
     stop = datetime.datetime.now().timestamp()
-    import time
-    t = time.time()
     while now.timestamp() + 3600 < stop:
         data.append(
             (f'Date({int(now.timestamp() * 1000) + 3600})', get_hr(miles, now.timestamp())))
         now += datetime.timedelta(hours=1)
-    print('process', time.time() - t)
+
+    if cache:
+        hr_cache.set(days, data, timeout=600)
+
     return data
 
 
