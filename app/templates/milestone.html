@@ -13,9 +13,9 @@
   <tbody>
     {% for m in milestones %}
     <tr>
-      <th scope="row" style="max-width: 60px">{{ m.mindex }}</th>
+      <th scope="rowgit" style="max-width: 60px">{{ m.mindex }}</th>
       <td class="col-md-2 hash"><a href="{{ m.hash | iota_explorer }}">{{ m.hash }}</a></td>
-      <td class="col-md-1">{{ m.timestamp | datetime }}</td>
+      <td class="col-md-1 time">{{ m.timestamp | datetime }}</td>
       <td class="col-md-1 hash visible-md visible-lg"><a href="{{ m.trunk | iota_explorer }}">{{ m.trunk }}</a></td>
       <td class="col-md-1 hash visible-md visible-lg" {{'style=background-color:rgba(231,76,60,0.4)' if m.branch != m.prev}}>
 	{% if m.branch != m.prev %}
