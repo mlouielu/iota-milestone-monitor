@@ -28,7 +28,7 @@ charts = GoogleCharts()
 # navbar has an usual amount of Link-Elements, more commonly you will have a
 # lot more View instances.
 nav.register_element('frontend_top', Navbar(
-    View('IOTA-Milestone Monitor', '.index'),
+    View('IOTA COO Milestone Monitor', '.index'),
     View('Home', '.index'),
     View('Milestones', '.milestones'),
     View('Stats', '.stats'),
